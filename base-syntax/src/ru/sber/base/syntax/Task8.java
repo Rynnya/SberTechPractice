@@ -12,7 +12,7 @@ public class Task8 {
         System.out.println("При вводе слова \"Сдаюсь\" вам будет выдан ответ сразу.");
         System.out.println("Введите вашу догадку:");
 
-        int amountOfTries = 2;
+        int amountOfTries = 3;
         Scanner scanner = new Scanner(System.in);
 
         while (amountOfTries > 0) {
