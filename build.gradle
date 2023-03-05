@@ -1,0 +1,36 @@
+apply plugin: 'idea'
+apply plugin: 'java'
+
+compileJava.options.encoding = 'UTF-8'
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+repositories {
+    mavenCentral()
+}
+
+test {
+    useJUnitPlatform()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+sourceSets {
+    test {
+        java {
+            srcDirs = [
+                    'base-syntax/src',
+                    'collection/src',
+                    'collection1/src',
+                    'collection2/src',
+                    'oop1/src',
+                    'oop2/src'
+            ]
+        }
+    }
+}
