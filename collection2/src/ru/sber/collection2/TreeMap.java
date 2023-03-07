@@ -99,7 +99,7 @@ public class TreeMap implements Map {
         while (node != null) {
             int nodeHashCode = Objects.hashCode(node.key);
 
-            if (keyHashCode == nodeHashCode) {
+            if (keyHashCode == nodeHashCode && Objects.equals(node.key, key)) {
                 return node;
             } else if (keyHashCode < nodeHashCode) {
                 node = node.left;
@@ -455,14 +455,14 @@ public class TreeMap implements Map {
             parent = node;
             int nodeHashCode = Objects.hashCode(node.key);
 
-            if (keyHashCode < nodeHashCode) {
-                node = node.left;
-            } else if (keyHashCode > nodeHashCode) {
-                node = node.right;
-            } else {
+            if (keyHashCode == nodeHashCode && Objects.equals(node.key, key)) {
                 objectToReturn = node.value;
                 node.value = value;
                 return objectToReturn;
+            } else if (keyHashCode < nodeHashCode) {
+                node = node.left;
+            } else {
+                node = node.right;
             }
         }
 
@@ -489,7 +489,7 @@ public class TreeMap implements Map {
         Node node = this.rootNode;
         int keyHashCode = Objects.hashCode(key);
 
-        while (node != null && Objects.hashCode(node.key) != keyHashCode) {
+        while (node != null && Objects.hashCode(node.key) != keyHashCode && !Objects.equals(node.key, key)) {
             if (keyHashCode < Objects.hashCode(node.key)) {
                 node = node.left;
             } else {
